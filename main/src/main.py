@@ -59,6 +59,7 @@ class CryptoBot:
         server.quit()
 
     def place_order(self, symbol, side, type, value):
+        try:
         if side == Client.SIDE_BUY:
             order = self.client.create_order(
                 symbol=symbol,
@@ -72,6 +73,9 @@ class CryptoBot:
                 type=type,
                 quantity=value)
         print("Order made:\n{}".format(order))
+        catch: 
+            return False
+        return True
     
     def get_trades(self, type_of_comm = 3):
         is_traded = False
@@ -103,7 +107,8 @@ class CryptoBot:
                         """ 
                         order_succeded = self.place_order(symbol, side, type, value)
                         """
-                        order_succeded = True
+                    # delete this line if you are placing real order
+                    order_succeded = True
                     if order_succeded:
                         is_traded = True
             if Short_EMA_of_closing_price[-1] <= Long_EMA_of_closing_price[-1] and RSI_user[-1] > RSI_OVERBOUGHT:
@@ -122,6 +127,7 @@ class CryptoBot:
                         """ 
                         order_succeded = self.place_order(symbol, side, type, value)
                         """
+                    # delete this line if you are placing real order
                     order_succeded = True
                     if order_succeded:
                         is_traded = False
